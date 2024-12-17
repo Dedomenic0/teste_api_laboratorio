@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorio</title>
+</head>
+<body>
+    <h1>escreva aqui</h1>
+    <textarea name="teste" id="texto">pedido</textarea>
+    <textarea name="conf" id="conf">nao conformidade</textarea>
+    <button type="button" onclick="salvarTexto()">Salvar</button>
+    <script >
+       async function salvarTexto(){
+            const texto = document.getElementById("texto").value;
+            const conf = document.getElementById("conf").value;
+
+           try { fetch("http://localhost:3000/salva",{
+                method: "POST",
+                headers:{
+                    "Content-Type":"application/json",
+                }, 
+                body: JSON.stringify({
+                     texto : texto,
+                     conf : conf
+                    })
+            })
+        
+
+        }catch (err){
+            console.log(err)
+        }
+        }
+    </script>
+</body>
+</html>
