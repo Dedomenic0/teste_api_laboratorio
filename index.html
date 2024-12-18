@@ -6,14 +6,21 @@
     <title>Laboratorio</title>
 </head>
 <body>
-    <h1>escreva aqui</h1>
-    <textarea name="teste" id="texto">pedido</textarea>
-    <textarea name="conf" id="conf">nao conformidade</textarea>
+    <h1>Amostras rejeitadas</h1>
+    <textarea name="teste" id="texto" rows="2" cols="35" placeholder="Pedido"></textarea>
+    <textarea name="conf" id="conf" rows="2" cols="35" placeholder="local de coleta"></textarea>
+    <select name="motivo" id="motivo">
+        <option value="Amostra coagulada"> amostra coag </option>
+        <option value="volume inadequado"> volume inadequado </option>
+        <option value="coleta em tubo errado"> coleta tubo </option>
+        <option value="outros"> outros </option>
+    </select>
     <button type="button" onclick="salvarTexto()">Salvar</button>
     <script >
-       async function salvarTexto(){
+       async function salvarTexto() {
             const texto = document.getElementById("texto").value;
             const conf = document.getElementById("conf").value;
+            const motivo = document.getElementById("motivo").value;
 
            try { fetch("http://localhost:3000/salva",{
                 method: "POST",
@@ -22,7 +29,8 @@
                 }, 
                 body: JSON.stringify({
                      texto : texto,
-                     conf : conf
+                     conf : conf,
+                     motivo : motivo
                     })
             })
         
