@@ -4,41 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laboratorio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Amostras rejeitadas</h1>
-    <textarea name="teste" id="texto" rows="2" cols="35" placeholder="Pedido"></textarea>
-    <textarea name="conf" id="conf" rows="2" cols="35" placeholder="local de coleta"></textarea>
+    <textarea name="teste" id="texto" placeholder="Cod. da amostra"></textarea>
+    <select name="conf" id="conf">
+        <option value="opt">-selecione-</option>
+        <option value="P.S Infantil">P.S Infantil</option>
+        <option value="P.S Adulto"> P.S Adulto</option>
+        <option value="P.S Cidade">P.S Cidade</option>
+        <option value="Clinica medica">Clinica medica</option>
+        <option value="Maternidade">Materninade</option>
+        <option value="UTI">UTI</option>
+        <option value="Cardiologia">Cardiologia</option>
+    </select>
     <select name="motivo" id="motivo">
-        <option value="Amostra coagulada"> amostra coag </option>
+        <option value="Amostra coagulada"> Amostra coagulada </option>
         <option value="volume inadequado"> volume inadequado </option>
-        <option value="coleta em tubo errado"> coleta tubo </option>
-        <option value="outros"> outros </option>
+        <option value="Coleta em tubo errado"> coleta em tubo tubo errado </option>
+        <option value="Outros"> Outros </option>
     </select>
     <button type="button" onclick="salvarTexto()">Salvar</button>
-    <script >
-       async function salvarTexto() {
-            const texto = document.getElementById("texto").value;
-            const conf = document.getElementById("conf").value;
-            const motivo = document.getElementById("motivo").value;
-
-           try { fetch("http://localhost:3000/salva",{
-                method: "POST",
-                headers:{
-                    "Content-Type":"application/json",
-                }, 
-                body: JSON.stringify({
-                     texto : texto,
-                     conf : conf,
-                     motivo : motivo
-                    })
-            })
-        
-
-        }catch (err){
-            console.log(err)
-        }
-        }
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>

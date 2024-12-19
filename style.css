@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-image: url(./imag/hemácias.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: luminosity;
+  font-family: "Cabin", serif;
+  font-weight: 500;
+  margin-top: 100px;
+  margin-left: 50px;
+}
+
+h1 {
+  color: #000000;
+  font-size: 70px ;
+  margin-left: 130px;
+  margin-bottom: 30px;
+  text-shadow:#ffffff 1px -1px, #ffffff -1px 1px, #ffffff 1px 1px, #ffffff -1px -1px;
+}
+
+textarea  {
+  width: 20%;
+  padding: 1px;
+  margin-left: 20px;
+  margin-top: 10px;
+  border: 2px solid rgb(255, 0, 0);
+  border-radius: 6px;
+  background-color: rgb(255, 192, 192);
+  width: 250px;
+  font-size: 15px;
+  text-align: center;
+  resize: none;
+}
+
+select {
+  color: #000000;
+  cursor: pointer;
+  background-color: rgb(255, 192, 192);
+  border-radius: 8px;
+  width: 200px;
+  border: 2px solid red;
+  text-align: center;
+  margin-left: 10px;
+  position: relative; bottom: 15px;
+  font-family: "Cabin", serif;
+  font-weight: 900;
+  height: 37px;
+  font-size: 15px;
+}
+
+textarea::placeholder {
+  color: rgb(0, 0, 0);
+  text-align: center;
+  padding: 6px;
+  font-family: "Cabin", serif;
+  font-weight: 900;
+  font-size: 15px;
+  opacity: 0.5;
+}
+
+button {
+  background-color: rgb(3, 226, 14);
+  border: 2px;
+  border-radius: 6px;
+  padding: 10px;
+  text-align: center;
+  margin-left: 30px;
+  position: relative; right: 20px; bottom: 16px; 
+  font-family: "Cabin", serif;
+  font-weight: 900;
+  cursor: pointer;
+}
