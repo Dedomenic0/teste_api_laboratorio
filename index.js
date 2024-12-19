@@ -15,7 +15,7 @@ app.use(cors())
 routes(app)
 
 
-app.listen(3000, () => {
+app.listen(8080, () => {
     console.log("Servidor escutando...");
  });
 
@@ -28,7 +28,7 @@ async function salvaTxt(req, res) {
     const motivo = req.body.motivo
 
     try{
-        await fs.promises.appendFile("./teste.txt", `Cod. da amostra: ${txt}, Motivo: ${motivo}, Procedencia: ${conf}, Data: ${data}` + "\n");
+        await fs.promises.appendFile("./teste.txt", `Cod. da amostra: ${txt}, Motivo: ${motivo}, Procedencia: ${conf}; Data: ${data}` + "\n");
         console.log("Deu certo");
         res.status(200)
     } catch (err) {

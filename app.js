@@ -8,7 +8,7 @@ async function salvarTexto() {
         return
     }
 
-   try { fetch("http://localhost:3000/salva",{
+   try { fetch("http://localhost:8080/salva",{
         method: "POST",
         headers:{
             "Content-Type":"application/json",
