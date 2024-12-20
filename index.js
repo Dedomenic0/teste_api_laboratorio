@@ -32,9 +32,9 @@ async function salvaTxt(req, res) {
     try{
         await fs.promises.appendFile("./teste.txt", `Cod. da amostra: ${txt}, Motivo: ${motivo}, Procedencia: ${conf}; Data: ${data}` + "\n");
         console.log("Deu certo");
-        res.status(200)
+        res.status(200);
     } catch (err) {
-        console.log(err)
+        console.log(err);
     }
 }
 
