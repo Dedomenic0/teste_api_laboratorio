@@ -20,15 +20,13 @@ function contador (req, res) {
         console.log(`Quantidade de ocorrencias: ${resultado.length}`);
         
         salvaArquivo(textoCorreto, "./palavras_contadas.txt");
-        
-        console.log(regex);
-        
-        res.status(200),fim;
+                        
+        res.json(`Quandidade de ocorrencias: ${palavra1} com ${palavra2} = ${fim}`);
     })
 }
 
 function arrumaSaida(texto){
-    return texto.toString().replace(/,/g,"\n")
+    return texto.toString().replace(/,/g,"\n");
 }
 
 async function salvaArquivo(texto, caminho) {
@@ -37,8 +35,8 @@ async function salvaArquivo(texto, caminho) {
         console.log("OK");
 
     } catch(erro) {
-        throw erro
+        throw erro;
     }
 }
 
-export default contador
+export default contador;

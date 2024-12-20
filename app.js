@@ -4,8 +4,8 @@ async function salvarTexto() {
     const motivo = document.getElementById("motivo").value;
     
     if (texto == "" || conf == "opt") {
-        alert("Preencha todos os campos")
-        return
+        alert("Preencha todos os campos");
+        return;
     }
     
     try {
@@ -22,7 +22,7 @@ async function salvarTexto() {
         })
 
 }catch (err){
-    console.log(err)
+    console.log(err);
 }
 }
 
@@ -31,7 +31,7 @@ async function enviarFormulario() {
     const motivoRejei = document.getElementById("motivoRejei").value;
     const local = document.getElementById("local").value;
     try {
-       let resposta = fetch("http://localhost:8080/envia",{
+       let resposta = await fetch("http://localhost:8080/envia",{
            method: "POST",
            headers:{
                "Content-Type":"application/json",
@@ -42,8 +42,9 @@ async function enviarFormulario() {
             }),
         }
     )
-    alert (await resposta.text)
+    let dados = await resposta.text();
+    alert(dados);
 } catch(err) {
-    console.log(err)
+    console.log(err);
 }
 }
