@@ -1,25 +1,34 @@
 import fs from "fs"
 import path from "path"
 
-const caminhoTexto = path.resolve("./teste.txt")
+const caminhotxt = path.resolve("./teste.txt")
 
-function contador (caminho, palavra1, palavra2) {
+function contador (req, res) {
+    const caminho = caminhotxt;
+    const palavra1 = req.body.motivoRejei;
+    const palavra2 = req.body.local;
+
     fs.readFile(caminho, 'utf8', (err, dados) => {
         if(err) {
-            console.log(err)
+            console.log(err);
             return
         }
         const regex = new RegExp(`\\b${palavra2}, Procedencia: ${palavra1}\\b`,"gi");
         const resultado = dados.match(regex) || [];
         const textoCorreto = arrumaSaida(resultado);
+        let fim = resultado.length
         console.log(`Quantidade de ocorrencias: ${resultado.length}`);
-        salvaArquivo(textoCorreto, "./palavras_contadas.txt")
-        console.log(regex)
+        
+        salvaArquivo(textoCorreto, "./palavras_contadas.txt");
+        
+        console.log(regex);
+        
+        res.status(200),fim;
     })
 }
 
 function arrumaSaida(texto){
-    return texto.toString().replace("\\b,\\b","\n")
+    return texto.toString().replace(/,/g,"\n")
 }
 
 async function salvaArquivo(texto, caminho) {
@@ -31,7 +40,5 @@ async function salvaArquivo(texto, caminho) {
         throw erro
     }
 }
-const local = "P.S Adulto"
-const motivo = "Coleta em tubo errado"
-contador(caminhoTexto, local, motivo);
 
+export default contador

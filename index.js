@@ -2,10 +2,12 @@ import fs from "fs"
 import express from "express"
 import cors from "cors"
 import moment from "moment"
+import contador from "./contador.js"
 
 const routes = (app) =>{
     app.use(express.json());
     app.post(`/salva`, salvaTxt);
+    app.post("/envia", contador);
 }
 
 const app = express();
