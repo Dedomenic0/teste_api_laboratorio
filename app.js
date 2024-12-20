@@ -30,6 +30,7 @@ async function salvarTexto() {
 async function enviarFormulario() {
     const motivoRejei = document.getElementById("motivoRejei").value;
     const local = document.getElementById("local").value;
+    const resultado = document.getElementById("resultado");
     try {
        let resposta = await fetch("http://localhost:8080/envia",{
            method: "POST",
@@ -43,7 +44,7 @@ async function enviarFormulario() {
         }
     )
     let dados = await resposta.text();
-    alert(dados);
+    resultado.value = dados
 } catch(err) {
     console.log(err);
 }

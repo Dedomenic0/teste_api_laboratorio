@@ -3,13 +3,12 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  
 }
 body {
   background-image: url(./imag/hemácias.png);
   background-repeat: no-repeat;
   background-size: cover;
-  background-blend-mode: luminosity;
   font-family: "Cabin", serif;
   font-weight: 500;
   margin-top: 100px;
@@ -21,7 +20,7 @@ h1 {
   font-size: 70px ;
   margin-left: 130px;
   margin-bottom: 30px;
-  text-shadow:#ffffff 1px -1px, #ffffff -1px 1px, #ffffff 1px 1px, #ffffff -1px -1px;
+  text-shadow:#ffffff 1px -1px, #ffffff -1px 1px, #ffffff 1px 1px, #ffffff -1px -1px;;
 }
 
 textarea  {
@@ -80,7 +79,7 @@ button {
 input[type="text"] {
   width: 20%;
   padding: 1px;
-  margin-left: 20px;
+  margin-left: 5%;
   margin-top: 10px;
   border: 4px solid rgb(0, 0, 0);
   border-radius: 6px;
@@ -92,9 +91,64 @@ input[type="text"] {
 }
 
 h2 {
-  color: #ffffff;
-  font-size: 20px ;
-  margin-top: 80%;
-  margin-left: 70%;
+  color: #4bd2fc;
+  font-size: 30px ;
+  margin-top: 20%;
+  margin-left: 3%;
   margin-bottom: 10px;
+  text-shadow:#000000 1px -1px, #000000 -1px 1px, #000000 1px 1px, #000000 -1px -1px;;
+}
+
+#motivoRejei {
+  margin-left: auto;
+  
+}
+
+#local {
+  margin-left: 0%;
+  margin-bottom: 20%;
+}
+
+#label1 {
+  position: relative; left: 1%; bottom: 0;
+  color: aqua;
+  
+}
+
+#label2 {
+  color: aqua;
+  position: relative; left: 1%; top: 5%
+}
+
+h3 {
+  position: absolute; top:95%;
+  color: #ffffff;
+  font-size: 15px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+input[type="button"] {
+  background-color: rgb(3, 226, 14);
+  border: 2px;
+  border-radius: 6px;
+  padding: 7px;
+  text-align: center;
+  margin-left: 30px;
+  font-family: "Cabin", serif;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+#resultado {
+  
+  padding: 12px;
+  margin-left: 5%;
+  
+  border: 4px solid rgb(0, 0, 0);
+  border-radius: 6px;
+  background-color: rgb(96, 181, 238);
+  
+  font-size: 15px;
+  text-align: left;
+  resize: none;
 }
