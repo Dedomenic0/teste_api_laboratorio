@@ -3,6 +3,7 @@ import express from "express"
 import cors from "cors"
 import moment from "moment"
 import contador from "./contador.js"
+import XLSX from "xlsx"
 
 const routes = (app) =>{
     app.use(express.json());
@@ -30,8 +31,13 @@ async function salvaTxt(req, res) {
     const motivo = req.body.motivo
 
     try{
-        await fs.promises.appendFile("./teste.txt", `Cod. da amostra: ${txt}, Motivo: ${motivo}, Procedencia: ${conf}; Data: ${data}` + "\n");
+        await fs.promises.appendFile("./teste.txt", `Cod. da amostra: ${txt.replace("\n", "")}, Motivo: ${motivo}, Procedencia: ${conf}; Data: ${data}` + "\n");
         console.log("Deu certo");
+        let wb = XLSX.utils.table_to_book([[txt, conf, motivo, data]])
+        let ws = wb.Sheets["tabela 1"];
+        XLSX.utils.sheet_add_aoa(ws,[["Criado" + new Date().toISOString()]], { origin: -1 });
+        XLSX.writeFile(wb, "dados.xlsx")
+
         res.status(200);
     } catch (err) {
         console.log(err);
