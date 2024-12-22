@@ -16,11 +16,12 @@ async function salvarTexto() {
             "Content-Type":"application/json",
         }, 
         body: JSON.stringify({
-             texto : texto,
-             conf : conf,
-             motivo : motivo
-            })
+            texto : texto,
+            conf : conf,
+            motivo : motivo
         })
+    })
+    apagarInputs();
 
 }catch (err){
     console.log(err);
@@ -31,7 +32,7 @@ async function salvarTexto() {
 async function enviarFormulario() {
     const motivoRejei = document.getElementById("motivoRejei").value;
     const local = document.getElementById("local").value;
-    const resultado = document.getElementById("resultado");
+    
     try {
        let resposta = await fetch("http://localhost:3000/envia",{
            method: "POST",
@@ -43,11 +44,21 @@ async function enviarFormulario() {
                 motivoRejei : motivoRejei,
                 local : local,
             }),
-        }
+        } 
     )
     let dados = await resposta.text();
     alert(dados);
+    apagarInputs();
 } catch(err) {
     console.log(err);
 }
 }
+
+function apagarInputs(){
+    document.getElementById("motivoRejei").value = "";
+    document.getElementById("local").value = "";
+    document.getElementById("motivo").value = "opt";
+    document.getElementById("conf").value = "opt";
+    document.getElementById("texto").value = "";
+}
+

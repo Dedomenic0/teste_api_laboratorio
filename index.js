@@ -32,15 +32,24 @@ async function salvaTxt(req, res) {
 
     try{
         await fs.promises.appendFile("./teste.txt", `Cod. da amostra: ${txt.replace("\n", "")}, Motivo: ${motivo}, Procedencia: ${conf}, Data: ${data}` + "\n");
+        fs.readFile("teste.txt", "utf8",async(err, data) => {
+           try {
+            let tratada1 = data.replace(/Cod. da amostra: /g, "");
+            let tratada2 = tratada1.replace(/Motivo: /g, "");
+            let tratada3 = tratada2.replace(/Procedencia: /g, "");
+            let tratada = tratada3.replace(/Data: /g, "");
+
+            await fs.promises.writeFile("./txt.txt", tratada);
+            
+            const wb = XLSX.readFile("txt.txt");
+            await XLSX.writeFile(wb, "./dados.xlsx");
+        } catch(err){
+            throw err;
+        }
+        })
+
+        
         console.log("Deu certo");
-        let valor = [[txt, conf, motivo, data]];
-        const loc = "./dados.xlsx"
-        //const wb = XLSX.utils.book_new()
-        const wb = XLSX.readFile("teste.txt")
-            const ws = XLSX.utils.sheet_add_aoa(wb, valor,  { origin : -1});
-            //XLSX.utils.book_append_sheet(wb, ws, "planilha1", true)
-            XLSX.writeFile(wb, "./fim.xlsx",);
-    
         res.status(200);
     } catch (err) {
         console.log(err);
