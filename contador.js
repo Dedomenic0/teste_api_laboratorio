@@ -5,8 +5,8 @@ const caminhotxt = path.resolve("./teste.txt")
 
 function contador (req, res) {
     const caminho = caminhotxt;
-    const palavra1 = req.body.motivoRejei;
-    const palavra2 = req.body.local;
+    const palavra2 = req.body.motivoRejei;
+    const palavra1 = req.body.local;
 
     fs.readFile(caminho, 'utf8', (err, dados) => {
         if(err) {

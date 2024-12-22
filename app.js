@@ -9,8 +9,9 @@ async function salvarTexto() {
     }
     
     try {
-     fetch("http://localhost:8080/salva",{
+     fetch("http://localhost:3000/salva",{
         method: "POST",
+        mode: "cors",
         headers:{
             "Content-Type":"application/json",
         }, 
@@ -32,8 +33,9 @@ async function enviarFormulario() {
     const local = document.getElementById("local").value;
     const resultado = document.getElementById("resultado");
     try {
-       let resposta = await fetch("http://localhost:8080/envia",{
+       let resposta = await fetch("http://localhost:3000/envia",{
            method: "POST",
+           mode: "cors",
            headers:{
                "Content-Type":"application/json",
             }, 
@@ -44,7 +46,7 @@ async function enviarFormulario() {
         }
     )
     let dados = await resposta.text();
-    resultado.value = dados
+    alert(dados);
 } catch(err) {
     console.log(err);
 }
