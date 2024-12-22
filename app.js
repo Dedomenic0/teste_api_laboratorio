@@ -1,15 +1,17 @@
+const link = "https://ed5e-2804-4ec-1103-7da0-513f-d830-5f23-2fef.ngrok-free.app";
+
 async function salvarTexto() {
     const texto = document.getElementById("texto").value;
     const conf = document.getElementById("conf").value;
     const motivo = document.getElementById("motivo").value;
     
-    if (texto == "" || conf == "opt") {
+    if (texto == "" || conf == "opt" || motivo == "opt") {
         alert("Preencha todos os campos");
         return;
     }
     
     try {
-     fetch("http://localhost:3000/salva",{
+     fetch(`${link}/salva`, {
         method: "POST",
         mode: "cors",
         headers:{
@@ -34,7 +36,7 @@ async function enviarFormulario() {
     const local = document.getElementById("local").value;
     
     try {
-       let resposta = await fetch("http://localhost:3000/envia",{
+       let resposta = await fetch(`${link}/envia`,{
            method: "POST",
            mode: "cors",
            headers:{
