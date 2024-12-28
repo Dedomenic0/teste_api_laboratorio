@@ -1,4 +1,4 @@
-const link = "https://ed5e-2804-4ec-1103-7da0-513f-d830-5f23-2fef.ngrok-free.app";
+const link = "http://localhost:3000";
 
 async function salvarTexto() {
     const texto = document.getElementById("texto").value;
@@ -63,4 +63,3 @@ function apagarInputs(){
     document.getElementById("conf").value = "opt";
     document.getElementById("texto").value = "";
 }
-

@@ -22,10 +22,8 @@ app.listen(3000, () => {
     console.log("Servidor escutando...");
  });
 
-const data = moment().format('DD-MM-YYYY');
-
-
-async function salvaTxt(req, res) {
+ async function salvaTxt(req, res) {
+    const data = moment().format('DD-MM-YYYY');
     const txt = req.body.texto;
     const conf = req.body.conf;
     const motivo = req.body.motivo
