@@ -1,5 +1,6 @@
 const link = "http://localhost:3000";
 
+//envia os inputs recebidos para o link pelo metodo post
 async function salvarTexto() {
     const texto = document.getElementById("texto").value;
     const conf = document.getElementById("conf").value;
@@ -55,7 +56,7 @@ async function enviarFormulario() {
     console.log(err);
 }
 }
-
+//retorna os inputs ao estado padrao após envio
 function apagarInputs(){
     document.getElementById("motivoRejei").value = "";
     document.getElementById("local").value = "";
