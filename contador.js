@@ -1,9 +1,9 @@
 import fs from "fs"
-import  { caminhoTxt }  from "./index.js";
 
 //função para contar as ocorrencias 
 function contador (req, res) {
-    const caminho = caminhoTxt;
+    const mes = new Date
+    const caminho = `./contador_mes_${mes.getMonth()+1}.txt`;
     const palavra2 = req.body.motivoRejei;
     const palavra1 = req.body.local;
 

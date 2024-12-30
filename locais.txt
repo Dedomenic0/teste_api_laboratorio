@@ -1,0 +1,88 @@
+PS Unesp
+PS Cidade
+PS Infantil
+PA da Mulher
+PS Observacao
+UTI Central
+UTI Coronariana
+UTI SETIC
+UTI Neonatal
+UTI Pediatrica
+UCI Convencional
+UCI Bercario
+UTI Cirurgica
+UTI Clinica Medica
+UTI Neurologica
+Urologia
+Neurologia
+Dermatologia
+Gastrologia
+Oftalmologia
+Cardiologia
+Obstetricia
+Ginecologia
+Clinica Medica 1
+Clinica Medica 2
+Clinica Medica 3
+MIP
+Unidade AVC
+Transplante
+Pediatria
+Psiquiatrica
+Cirurgia Plastica e Ortipedia
+Convenios
+Diagn Pulmonar
+Hemodialise
+Quimioterapia
+Cirurgia Vascular
+Alojamento Conjunto
+HEBO Alojamento
+Enf Administrativa
+SAE Infectologia
+Cuidados Paleativos
+AMB 6 Andar
+Hospital Estadual
+Hospital Dia
+Principal
+AMB Funcionarios
+AMB Funcao Pulmonar
+AMB Mulher
+Canguru
+Banco de Leite
+SESMT
+SARAD
+CIDMAC
+HEBTU
+Hospital Psiquiatrico
+Sao Manuel
+Bofete
+Itatinga
+Pereiras
+Pardinho
+Torre Pedra
+Areiopolis
+Porangaba
+Pratania
+Piramboia
+CSE
+CMS CECAP
+CMS Vila Jardim
+CMS Cesar Neto
+CMS Ferroviario
+CMS Aeroporto
+PSF Nosso Teto
+PSF Renovacao
+USF St Maria
+USF Peabiru
+USF Jd Iolanda
+USF Marajoana
+USF Comerciarios
+USF Rubiao JR
+USF St Elisa
+USF Jd Cristina
+USF Sao Lucio
+USF COHAB
+USF Vitoriana
+USF Jd Brasil
+USF Real Park
+USF Caina

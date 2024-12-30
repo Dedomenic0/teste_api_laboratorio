@@ -63,6 +63,22 @@ textarea::placeholder {
   opacity: 0.5;
 }
 
+#Coleta {
+  color: #000000;
+  cursor: pointer;
+  background-color: rgb(255, 192, 192);
+  border-radius: 8px;
+  width: 200px;
+  border: 2px solid red;
+  text-align: center;
+  margin-left: 10px;
+  position: relative; bottom: 15px;
+  font-family: "Cabin", serif;
+  font-weight: 900;
+  height: 37px;
+  font-size: 15px;
+}
+
 button {
   background-color: rgb(3, 226, 14);
   border: 2px;
@@ -121,7 +137,7 @@ h2 {
 }
 
 h3 {
-  position: absolute; top:97%;
+  /* position: absolute; top:97%; */
   color: #ffffff;
   font-size: 15px;
   font-family: 'Courier New', Courier, monospace;
@@ -151,4 +167,8 @@ input[type="button"] {
   font-size: 15px;
   text-align: left;
   resize: none;
+}
+
+datalist option {
+  background-color: red;
 }

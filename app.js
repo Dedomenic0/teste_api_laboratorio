@@ -3,14 +3,21 @@ const link = "http://localhost:3000";
 //envia os inputs recebidos para o link pelo metodo post
 async function salvarTexto() {
     const texto = document.getElementById("texto").value;
-    const conf = document.getElementById("conf").value;
+    const coleta = document.getElementById("Coleta").value;
     const motivo = document.getElementById("motivo").value;
+    const verificacao = document.getElementById("locais").textContent;
+
     
-    if (texto == "" || conf == "opt" || motivo == "opt") {
+    if (texto == "" || coleta == "" || motivo == "opt") {
         alert("Preencha todos os campos");
         return;
     }
     
+    if (!verificacao.includes(coleta)) {
+        alert("Local de coleta não encontrado");
+        return;
+    }
+
     try {
      fetch(`${link}/salva`, {
         method: "POST",
@@ -20,7 +27,7 @@ async function salvarTexto() {
         }, 
         body: JSON.stringify({
             texto : texto,
-            conf : conf,
+            coleta : coleta,
             motivo : motivo
         })
     })
@@ -33,34 +40,29 @@ async function salvarTexto() {
 
 
 async function enviarFormulario() {
-    const motivoRejei = document.getElementById("motivoRejei").value;
-    const local = document.getElementById("local").value;
-    
+
     try {
-       let resposta = await fetch(`${link}/envia`,{
+       await fetch(`${link}/envia`,{
            method: "POST",
            mode: "cors",
            headers:{
                "Content-Type":"application/json",
             }, 
-            body: JSON.stringify({
-                motivoRejei : motivoRejei,
-                local : local,
-            }),
+            
         } 
     )
-    let dados = await resposta.text();
-    alert(dados);
-    apagarInputs();
+    alert("Contagem")
+
 } catch(err) {
     console.log(err);
 }
 }
+
 //retorna os inputs ao estado padrao após envio
 function apagarInputs(){
     document.getElementById("motivoRejei").value = "";
     document.getElementById("local").value = "";
     document.getElementById("motivo").value = "opt";
-    document.getElementById("conf").value = "opt";
+    document.getElementById("Coleta").value = "";
     document.getElementById("texto").value = "";
 }
