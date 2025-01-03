@@ -14,9 +14,9 @@ const routes = (app) =>{
 
 //executa o express
 const app = express();
-app.use(express.static("uplouds"))
-app.use(cors())
-routes(app)
+app.use(express.static("uplouds"));
+app.use(cors());
+routes(app);
 
 //"abre" a porta local 3000
 app.listen(3000, () => {
@@ -28,12 +28,27 @@ app.listen(3000, () => {
     const data = moment().format('DD-MM-YYYY');
     const txt = req.body.texto;
     const coleta = req.body.coleta;
-    const motivo = req.body.motivo
-    const mes = new Date
+    const motivo = req.body.motivo;
+    const rota = req.body.rota;
+    const mes = new Date;
+    var rotaTxt = "";
+    var rotaXlsx = "";
+    var rotaDeSalvamento = "";
+
+    //verifica se a opçao correspondente está marcada para assim mudar a rota para salva os arquivos
+    if (rota == true) {
+        rotaTxt = `./contadorHemosta_mes_${mes.getMonth()+1}.txt`;
+        rotaXlsx = `./amostrasHemosta_mes_${mes.getMonth()+1}.xlsx`;
+        rotaDeSalvamento = "./para-xlsxhemosta.txt";
+    } else {
+        rotaTxt = `./contador_mes_${mes.getMonth()+1}.txt`;
+        rotaXlsx = `./amostras_mes_${mes.getMonth()+1}.xlsx`;
+        rotaDeSalvamento = "./para-xlsx.txt";
+    }
 
     try{
-        await fs.promises.appendFile(`./contador_mes_${mes.getMonth()+1}.txt`, `Cod. da amostra: ${txt.replace("\n", "")}, Motivo: ${motivo}, Procedencia: ${coleta}, Data: ${data}` + "\n");
-        fs.readFile(`./contador_mes_${mes.getMonth()+1}.txt`, "utf8",async(err, data) => {
+        await fs.promises.appendFile(rotaTxt, `Cod. da amostra: ${txt.replace("\n", "")}, Motivo: ${motivo}, Procedencia: ${coleta}, Data: ${data}` + "\n");
+        fs.readFile(rotaTxt, "utf8", async(err, data) => {
            try {
             //recorta as partes do arquivo txt
             let tratada1 = data.replace(/Cod. da amostra: /g, "");
@@ -42,11 +57,12 @@ app.listen(3000, () => {
             let tratada = tratada3.replace(/Data: /g, "");
            
             //lê o arquivo tratado
-            await fs.promises.writeFile("./txt.txt", tratada);
+            await fs.promises.writeFile(rotaDeSalvamento, tratada);
             
             //Lê o arquivo txt e o copia em formato XLSX
-            const wb = XLSX.readFile("txt.txt");
-            await XLSX.writeFile(wb, `./amostras_mes_${mes.getMonth()+1}.xlsx`);
+            const wb = XLSX.readFile(rotaDeSalvamento);
+            await XLSX.writeFile(wb, rotaXlsx);
+
         } catch(err){
             throw err;
         }

@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laboratorio</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h1>Amostras rejeitadas</h1>
-    
-    <textarea name="teste" id="texto" placeholder="Cod. da amostra"></textarea>
-    <input list="locais" id="Coleta" placeholder="Local da Coleta" >
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Laboratorio</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <section class="form-container">
+            <div class="container">
+                <h1>Amostras rejeitadas</h1>
+                <form>
+     <input type="checkbox" name="hemosta" id="hemostas"> <label for="hemostas">AMOSTRA DA HEMOSTASIA?</label><br>
+    <br><textarea name="teste" id="texto" placeholder="Cod. da amostra"></textarea><br>
+    <input list="locais" id="Coleta" placeholder="Local da Coleta" ><br>
     <datalist id="locais">
         <option>PS Unesp
             <option>PS Cidade
                 <option>PS Infantil
                     <option>PA da Mulher
                         <option>PS Observacao
+        
                             <option>UTI Central
                                 <option>UTI Coronariana
                                     <option>UTI SETIC
@@ -27,6 +31,7 @@
                                                         <option>UTI Cirurgica
                                                             <option>UTI Clinica Medica
                                                                 <option>UTI Neurologica
+        
                                                                     <option>Urologia
                                                                         <option>Neurologia
                                                                             <option>Dermatologia
@@ -42,6 +47,7 @@
                                                                                                                     <option>Unidade AVC
                                                                                                                         <option>Transplante
                                                                                                                             <option>Pediatria
+        
                                                                                                                                 <option>Psiquiatrica
                                                                                                                                     <option>Cirurgia Plastica e Ortipedia
                                                                                                                                         <option>Convenios
@@ -54,6 +60,7 @@
                                                                                                                                                                     <option>Enf Administrativa
                                                                                                                                                                         <option>SAE Infectologia
                                                                                                                                                                             <option>Cuidados Paleativos
+        
                                                                                                                                                                                 <option>AMB 6 Andar
                                                                                                                                                                                     <option>Hospital Estadual
                                                                                                                                                                                         <option>Hospital Dia
@@ -68,6 +75,7 @@
                                                                                                                                                                                                                             <option>CIDMAC
                                                                                                                                                                                                                                 <option>HEBTU
                                                                                                                                                                                                                                     <option>Hospital Psiquiatrico
+        
                                                                                                                                                                                                                                         <option>Sao Manuel
                                                                                                                                                                                                                                             <option>Bofete
                                                                                                                                                                                                                                                 <option>Itatinga
@@ -78,6 +86,7 @@
                                                                                                                                                                                                                                                                     <option>Porangaba
                                                                                                                                                                                                                                                                         <option>Pratania
                                                                                                                                                                                                                                                                             <option>Piramboia
+        
                                                                                                                                                                                                                                                                                 <option>CSE
                                                                                                                                                                                                                                                                                     <option>CMS CECAP
                                                                                                                                                                                                                                                                                         <option>CMS Vila Jardim
@@ -86,6 +95,7 @@
                                                                                                                                                                                                                                                                                                     <option>CMS Aeroporto
                                                                                                                                                                                                                                                                                                         <option>PSF Nosso Teto
                                                                                                                                                                                                                                                                                                             <option>PSF Renovacao
+        
                                                                                                                                                                                                                                                                                                                 <option>USF St Maria
                                                                                                                                                                                                                                                                                                                     <option>USF Peabiru
                                                                                                                                                                                                                                                                                                                         <option>USF Jd Iolanda
@@ -108,15 +118,18 @@
         <option value="volume inadequado"> volume inadequado </option>
         <option value="Coleta em tubo errado"> coleta em tubo tubo errado </option>
         <option value="Outros"> Outros </option>
-    </select>
+    </select><br>
     <button type="button" onclick="salvarTexto()">Salvar</button>
-    <BR><input type="checkbox" name="hemosta" id="hemostas" disabled> AMOSTRA DA HEMOSTASIA?
-    <div>
-        <h2>Realizar a contagem</h2>
-        <input type="button" value="Enviar" id="enviar" onclick="enviarFormulario()">
+    </form>    
+    <div class="contador">
+        <h2>Contagem</h2>
+        <input type="button" value="Realizar contagem" id="enviar" onclick="enviarFormulario()">
     </div>
-    <br><br><br><br>
+</div>
+</section>
+        <div class="autor">
     <h3>FROM: EDUARDO DEDOMENICO</h3>
+    </div>
     <script src="app.js"></script>
 </body>
 </html>
