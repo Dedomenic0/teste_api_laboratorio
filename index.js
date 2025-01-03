@@ -25,12 +25,12 @@ app.listen(3000, () => {
 
 //salva o arquivo em txt
  async function salvaTxt(req, res) {
-    const data = moment().format('DD-MM-YYYY');
+    const mes = new Date;
+    const data = moment().format('DD/MM/YYYY');
     const txt = req.body.texto;
     const coleta = req.body.coleta;
     const motivo = req.body.motivo;
     const rota = req.body.rota;
-    const mes = new Date;
     var rotaTxt = "";
     var rotaXlsx = "";
     var rotaDeSalvamento = "";
@@ -61,7 +61,7 @@ app.listen(3000, () => {
             
             //Lê o arquivo txt e o copia em formato XLSX
             const wb = XLSX.readFile(rotaDeSalvamento);
-            await XLSX.writeFile(wb, rotaXlsx);
+            XLSX.writeFile(wb, rotaXlsx);
 
         } catch(err){
             throw err;

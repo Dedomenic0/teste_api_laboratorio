@@ -3,7 +3,7 @@ import XLSX from "xlsx";
 
 var caminhoExel = "";
 var result = "";
-const motivos = ["Amostra coagulada", "Volume indequado", "Coleta em tubo errado", "outros"];
+const motivos = ["Amostra coagulada", "Volume inadequado", "Coleta em tubo errado", "Outros"];
 
 export default function separaEConta (req, res){
     setTimeout (() => {salvaExel()}, 3000);
@@ -15,11 +15,11 @@ fs.readFile("locais.txt", "utf8", async(err, data) => {
     try{
         const dados = data.replace(/(\r\n|\n|\r)/g, ",");
         const resultado = dados.split(",");
-    for (let i = 0; i < motivos.length; i++) {
-    let rejei =  motivos[i];
-    for (let i = 0; i < resultado.length; i++){
-    let consulta = resultado[i];
-    contador(consulta, rejei, rota);
+        for (let i = 0; i < resultado.length; i++){
+         let consulta = resultado[i];
+            for (let i = 0; i < motivos.length; i++) {
+             let rejei =  motivos[i];
+             contador(consulta, rejei, rota);
    }}
    } catch (err) {
     throw err;
@@ -29,7 +29,7 @@ fs.readFile("locais.txt", "utf8", async(err, data) => {
 
 function contador(palavra1, palavra2, rota) {
     const mes = new Date;
-    const caminho = "";
+    var caminho = "";
 
     if (rota == true) {
         caminho = `./contadorHemosta_mes_${mes.getMonth()+1}.txt`;
