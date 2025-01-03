@@ -6,7 +6,7 @@ async function salvarTexto() {
     const coleta = document.getElementById("Coleta").value;
     const motivo = document.getElementById("motivo").value;
     const verificacao = document.getElementById("locais").textContent;
-    const rota = document.getElementById("hemostas").Checked;
+    const rota = document.getElementById("hemostas").checked;
     
     setTimeout(() => apagarInputs(), 1000)
 
@@ -37,14 +37,14 @@ async function salvarTexto() {
     })
 
 }catch (err){
-    alert("Falha ao conectar com o servidor!")
     console.log(err);
+    alert("Falha ao conectar com o servidor!");
 }
 }
 
 
 async function enviarFormulario() {
-    const rota = document.getElementById("hemostas").Checked;
+    const rota = document.getElementById("hemostas").checked;
     
     setTimeout(() => apagarInputs(), 1000)
 
@@ -63,7 +63,7 @@ async function enviarFormulario() {
     )
     
 } catch(err) {
-    alert("Falha ao conectar com o servidor!")
+    alert("Falha ao conectar com o servidor!");
     console.log(err);
 }
 }
@@ -73,5 +73,5 @@ function apagarInputs(){
     document.getElementById("texto").value = "";
     document.getElementById("motivo").value = "opt";
     document.getElementById("Coleta").value = "";
-    document.getElementById("hemostas").Checked = "";
+    document.getElementById("hemostas").checked = "";
 }
