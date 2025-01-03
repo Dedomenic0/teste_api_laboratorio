@@ -10,6 +10,7 @@ async function salvarTexto() {
     
     setTimeout(() => apagarInputs(), 1000)
 
+    //verifica se os campos foram preenchidos corretamente
     if (texto == "" || coleta == "" || motivo == "opt") {
         alert("Preencha todos os campos");
         return;
