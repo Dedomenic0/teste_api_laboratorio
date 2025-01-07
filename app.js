@@ -8,8 +8,7 @@ async function salvarTexto() {
     const verificacao = document.getElementById("locais").textContent;
     const rota = document.getElementById("hemostas").checked;
     
-    setTimeout(() => apagarInputs(), 1000)
-
+    
     //verifica se os campos foram preenchidos corretamente
     if (texto == "" || coleta == "" || motivo == "opt") {
         alert("Preencha todos os campos");
@@ -20,52 +19,59 @@ async function salvarTexto() {
         alert("Local de coleta não encontrado");
         return;
     }
-
+    
     try {
-    await fetch(`${link}/salva`, {
-        method: "POST",
-        mode: "cors",
-        headers:{
-            "Content-Type":"application/json",
-        }, 
-        body: JSON.stringify({
-            texto : texto,
-            coleta : coleta,
-            motivo : motivo,
-            rota : rota
+        await fetch(`${link}/salva`, {
+            method: "POST",
+            mode: "cors",
+            headers:{
+                "Content-Type":"application/json",
+            }, 
+            body: JSON.stringify({
+                texto : texto,
+                coleta : coleta,
+                motivo : motivo,
+                rota : rota
+            })
         })
-    })
-
-}catch (err){
-    console.log(err);
+        .then(response => response.json())
+        .then(data => {
+            console.log("ok", data),
+            apagarInputs()
+        });
+        
+    }catch (err){
+    console.error(err);
     alert("Falha ao conectar com o servidor!");
-}
+    }
 }
 
 
 async function enviarFormulario() {
     const rota = document.getElementById("hemostas").checked;
     
-    setTimeout(() => apagarInputs(), 1000)
-
     try {
-       alert("Contagem realizada")
        await fetch(`${link}/envia`,{
-           method: "POST",
-           mode: "cors",
-           headers:{
-               "Content-Type":"application/json",
+            method: "POST",
+            mode: "cors",
+            headers:{
+                "Content-Type":"application/json",
             }, 
             body: JSON.stringify({
                 rota : rota
             })
         } 
     )
+    .then(response => response.json())
+    .then(data => {
+        console.log("ok", data),
+        apagarInputs(),
+        alert("Contagem realizada")})
     
 } catch(err) {
+    console.error(err);
     alert("Falha ao conectar com o servidor!");
-    console.log(err);
-}
+} 
 }
 
 //retorna os inputs ao estado padrao após envio

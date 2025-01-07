@@ -21,6 +21,7 @@ fs.readFile("locais.txt", "utf8", async(err, data) => {
              let rejei =  motivos[i];
              contador(consulta, rejei, rota);
    }}
+   res.status(200).json({"response":"Contagem realizada"});
    } catch (err) {
     throw err;
    };

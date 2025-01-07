@@ -69,7 +69,7 @@ app.listen(3000, () => {
         })
         
         //console.log("Deu certo");
-        res.status(200);
+        res.status(200).json({"response":"Salvo"});
     } catch (err) {
         console.log(err);
     }
