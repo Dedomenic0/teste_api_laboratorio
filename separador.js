@@ -6,41 +6,41 @@ var result = "";
 const motivos = ["Amostra coagulada", "Volume inadequado", "Coleta em tubo errado", "Outros"];
 
 export default function separaEConta (req, res){
+   try { 
     setTimeout (() => {salvaExel()}, 3000);
-    setTimeout(() => {fs.promises.unlink(result)}, 4000)
+    setTimeout(() => {fs.promises.unlink(result)}, 4000);
+} catch (err) {
+    console.log(err);
+}
     
-    const rota = req.body.rota;
+    const mes = req.body.data;
 
 fs.readFile("locais.txt", "utf8", async(err, data) => {
-    try{
-        const dados = data.replace(/(\r\n|\n|\r)/g, ",");
-        const resultado = dados.split(",");
+    if (err) {
+        console.log(err);
+        return;
+    }
+    const dados = data.replace(/(\r\n|\n|\r)/g, ",");
+    const resultado = dados.split(",");
+       
         for (let i = 0; i < resultado.length; i++){
          let consulta = resultado[i];
             for (let i = 0; i < motivos.length; i++) {
              let rejei =  motivos[i];
-             contador(consulta, rejei, rota);
+             contador(consulta, rejei, mes);
    }}
    res.status(200).json({"response":"Contagem realizada"});
-   } catch (err) {
-    throw err;
-   };
+   
 });
 };
 
-function contador(palavra1, palavra2, rota) {
-    const mes = new Date;
+function contador(palavra1, palavra2, mes) {
     var caminho = "";
 
-    if (rota == true) {
-        caminho = `./contadorHemosta_mes_${mes.getMonth()+1}.txt`;
-        result = `./resultadoHemosta_mes_${mes.getMonth()+1}.txt`;
-        caminhoExel = `./resultadosHemosta_mes_${mes.getMonth()+1}.xlsx`;
-    } else {
-        caminho = `./contador_mes_${mes.getMonth()+1}.txt`;
-        result = `./resultado_mes_${mes.getMonth()+1}.txt`;
-        caminhoExel = `./resultados_mes_${mes.getMonth()+1}.xlsx`;
-    }
+    caminho = `./contadorHemosta_mes_${mes}.txt`;
+    result = `./resultadoHemosta_mes_${mes}.txt`;
+    caminhoExel = `./resultadosHemosta_mes_${mes}.xlsx`;
+    
 
  fs.readFile(caminho, 'utf8', (err, dados) => {
         if(err) {

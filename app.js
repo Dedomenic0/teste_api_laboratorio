@@ -6,11 +6,11 @@ async function salvarTexto() {
     const coleta = document.getElementById("Coleta").value;
     const motivo = document.getElementById("motivo").value;
     const verificacao = document.getElementById("locais").textContent;
-    const rota = document.getElementById("hemostas").checked;
+    const rota = document.getElementById("setor").value;
     
     
     //verifica se os campos foram preenchidos corretamente
-    if (texto == "" || coleta == "" || motivo == "opt") {
+    if (texto == "" || coleta == "" || motivo == "opt" || rota == "opt") {
         alert("Preencha todos os campos");
         return;
     }
@@ -48,8 +48,13 @@ async function salvarTexto() {
 
 
 async function enviarFormulario() {
-    const rota = document.getElementById("hemostas").checked;
+    const data = document.getElementById("data").value;
     
+    if (data == "00") {
+        alert ("Selecione um mês valido")
+        return
+    }
+
     try {
        await fetch(`${link}/envia`,{
             method: "POST",
@@ -58,7 +63,7 @@ async function enviarFormulario() {
                 "Content-Type":"application/json",
             }, 
             body: JSON.stringify({
-                rota : rota
+                data : data
             })
         } 
     )
@@ -79,5 +84,5 @@ function apagarInputs(){
     document.getElementById("texto").value = "";
     document.getElementById("motivo").value = "opt";
     document.getElementById("Coleta").value = "";
-    document.getElementById("hemostas").checked = "";
+    document.getElementById("setor").value = "opt";
 }

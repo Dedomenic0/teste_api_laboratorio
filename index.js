@@ -36,7 +36,7 @@ app.listen(3000, () => {
     var rotaDeSalvamento = "";
 
     //verifica se a opçao correspondente está marcada para assim mudar a rota para salva os arquivos
-    if (rota == true) {
+    if (rota == "hemostasia") {
         rotaTxt = `./contadorHemosta_mes_${mes.getMonth()+1}.txt`;
         rotaXlsx = `./amostrasHemosta_mes_${mes.getMonth()+1}.xlsx`;
         rotaDeSalvamento = "./para-xlsxhemosta.txt";
