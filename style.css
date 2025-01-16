@@ -116,8 +116,8 @@ button {
 
 h2 {
   color: #4bd2fc;
-  font-size: 30px ;
-  margin-top: 20%;
+  font-size: 35px ;
+  margin-top: 15%;
   margin-bottom: 10px;
   text-shadow:#000000 1px -1px, #000000 -1px 1px, #000000 1px 1px, #000000 -1px -1px;;
 }
@@ -174,10 +174,19 @@ input[type="button"] {
   height: 30px;
 }
 
-label {
-  color: rgb(71, 71, 71);
-  font-size: 17px;
-  padding: 3px;
-  border-radius: 5px;
+#data {
+  height: 23px;
+  font-size: 12px;
+  width: 100px;
+  margin-bottom: 10px;
+  margin-left: 2%;
+  margin-top: 1px;
+  background-color: #949494;
+  border:solid rgb(0, 0, 0) ;
 }
 
+label {
+  color: #ffffff;
+  font-size: 15px;
+  margin-left: 10px;
+}

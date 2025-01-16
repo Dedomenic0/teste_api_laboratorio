@@ -15,6 +15,7 @@ async function salvarTexto() {
         return;
     }
     
+    //verifica se o campo local da coleta foi preencido com um local existente
     if (!verificacao.includes(coleta)) {
         alert("Local de coleta não encontrado");
         return;
@@ -49,11 +50,17 @@ async function salvarTexto() {
 
 async function enviarFormulario() {
     const data = document.getElementById("data").value;
-    
+    const month = new Date;
+
+    //verifica o mês informado, se foi informada uma data e se ela é maior que o mês atual
     if (data == "00") {
-        alert ("Selecione um mês valido")
-        return
-    }
+        alert ("Selecione um mês valido!");
+        return;
+    };
+    if (data > month.getMonth() + 1 && data != "12") {
+        alert ("Selecione um mês valido!");
+        return;
+    };
 
     try {
        await fetch(`${link}/envia`,{

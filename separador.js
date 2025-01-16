@@ -2,16 +2,16 @@ import fs from "fs";
 import XLSX from "xlsx";
 
 var caminhoExel = "";
+var caminhoExel2 = "";
 var result = "";
+var result2 = "";
+
 const motivos = ["Amostra coagulada", "Volume inadequado", "Coleta em tubo errado", "Outros"];
 
 export default function separaEConta (req, res){
-   try { 
     setTimeout (() => {salvaExel()}, 3000);
     setTimeout(() => {fs.promises.unlink(result)}, 4000);
-} catch (err) {
-    console.log(err);
-}
+    setTimeout(() => {fs.promises.unlink(result2)}, 4000);
     
     const mes = req.body.data;
 
@@ -36,10 +36,14 @@ fs.readFile("locais.txt", "utf8", async(err, data) => {
 
 function contador(palavra1, palavra2, mes) {
     var caminho = "";
+    var caminho2 = "";
 
     caminho = `./contadorHemosta_mes_${mes}.txt`;
+    caminho2 = `./contador_mes_${mes}.txt`;
     result = `./resultadoHemosta_mes_${mes}.txt`;
+    result2 = `./resultado_mes_${mes}.txt`;
     caminhoExel = `./resultadosHemosta_mes_${mes}.xlsx`;
+    caminhoExel2 = `./resultados_mes_${mes}.xlsx`;
     
 
  fs.readFile(caminho, 'utf8', (err, dados) => {
@@ -55,17 +59,23 @@ function contador(palavra1, palavra2, mes) {
         //retorna o numero de ocorrencias                 
         let fim = resultado.length;
         //console.log(`Quantidade de ocorrencias: ${resultado.length}`);
-        
-       fs.promises.appendFile(result , `${palavra1}, ${palavra2}, ${fim} \n`);
-        //console.log(`Quandidade de ocorrencias: ${palavra1} com ${palavra2} = ${fim}`);
+        if (fim == 0) { return; }
+
+        else {
+            fs.promises.appendFile(result , `${palavra1}, ${palavra2}, ${fim} \n`);
+            fs.promises.appendFile(result2 , `${palavra1}, ${palavra2}, ${fim} \n`);
+             //console.log(`Quandidade de ocorrencias: ${palavra1} com ${palavra2} = ${fim}`);
+        }
     })
 }
 
 async function salvaExel(){
      try {
         const wb = XLSX.readFile(result);
+        const wb2 = XLSX.readFile(result2)
         await XLSX.writeFile(wb, caminhoExel);
+        await XLSX.writeFile(wb2, caminhoExel2);
     } catch (err){
-            console.log(err);
+        console.log(err);
     }
 }
