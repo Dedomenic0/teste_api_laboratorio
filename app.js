@@ -53,15 +53,11 @@ async function enviarFormulario() {
     const month = new Date;
 
     //verifica o mês informado, se foi informada uma data e se ela é maior que o mês atual
-    if (data == "00") {
+    if (data == "00" || data > month.getMonth() + 1 && data != "12") {
         alert ("Selecione um mês valido!");
         return;
     };
-    if (data > month.getMonth() + 1 && data != "12") {
-        alert ("Selecione um mês valido!");
-        return;
-    };
-
+    
     try {
        await fetch(`${link}/envia`,{
             method: "POST",

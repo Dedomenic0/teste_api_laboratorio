@@ -37,13 +37,17 @@ fs.readFile("locais.txt", "utf8", async(err, data) => {
 function contador(palavra1, palavra2, mes) {
     var caminho = "";
     var caminho2 = "";
+    const data = new Date;
+    var ano = data.getFullYear();
 
-    caminho = `./contadorHemosta_mes_${mes}.txt`;
-    caminho2 = `./contador_mes_${mes}.txt`;
-    result = `./resultadoHemosta_mes_${mes}.txt`;
-    result2 = `./resultado_mes_${mes}.txt`;
-    caminhoExel = `./resultadosHemosta_mes_${mes}.xlsx`;
-    caminhoExel2 = `./resultados_mes_${mes}.xlsx`;
+    if (mes == "12" && data.getMonth()+1 == 1) {ano = data.getFullYear() - 1}
+
+    caminho = `./contadorHemosta_mes_${mes}-${ano}.txt`;
+    caminho2 = `./contador_mes_${mes}-${ano}.txt`;
+    result = `./resultadoHemosta_mes_${mes}-${ano}.txt`;
+    result2 = `./resultado_mes_${mes}-${ano}.txt`;
+    caminhoExel = `./resultadosHemosta_mes_${mes}-${ano}.xlsx`;
+    caminhoExel2 = `./resultados_mes_${mes}-${ano}.xlsx`;
     
 
  fs.readFile(caminho, 'utf8', (err, dados) => {
@@ -55,7 +59,7 @@ function contador(palavra1, palavra2, mes) {
         //trasnforma as ocorrencias em arrays
         const regex = new RegExp(`\\b${palavra2}, Procedencia: ${palavra1}\\b`,"gi");
         const resultado = dados.match(regex) || [];
-        //const textoCorreto = arrumaSaida(resultado);
+        
         //retorna o numero de ocorrencias                 
         let fim = resultado.length;
         //console.log(`Quantidade de ocorrencias: ${resultado.length}`);
@@ -63,6 +67,26 @@ function contador(palavra1, palavra2, mes) {
 
         else {
             fs.promises.appendFile(result , `${palavra1}, ${palavra2}, ${fim} \n`);
+             //console.log(`Quandidade de ocorrencias: ${palavra1} com ${palavra2} = ${fim}`);
+        }
+    })
+    
+    fs.readFile(caminho2, 'utf8', (err, dados2) => {
+        if(err) {
+            console.log(err);
+            return;
+        }
+
+        //trasnforma as ocorrencias em arrays
+        const regex = new RegExp(`\\b${palavra2}, Procedencia: ${palavra1}\\b`,"gi");
+        const resultado = dados2.match(regex) || [];
+        
+        //retorna o numero de ocorrencias                 
+        let fim = resultado.length;
+        //console.log(`Quantidade de ocorrencias: ${resultado.length}`);
+        if (fim == 0) { return; }
+
+        else {
             fs.promises.appendFile(result2 , `${palavra1}, ${palavra2}, ${fim} \n`);
              //console.log(`Quandidade de ocorrencias: ${palavra1} com ${palavra2} = ${fim}`);
         }
