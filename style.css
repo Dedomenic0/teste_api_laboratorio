@@ -190,3 +190,12 @@ label {
   font-size: 15px;
   margin-left: 10px;
 }
+
+.novoLocal {
+  font-size: 15px;
+  margin: 50px;
+  background-color: rgb(204, 202, 202);
+  max-width: 120px;
+  border-radius: 8px;
+  text-align: center;
+}

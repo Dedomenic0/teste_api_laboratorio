@@ -1,4 +1,5 @@
 const link = "http://localhost:3000";
+pegaLocais()
 
 //envia os inputs recebidos para o link pelo metodo post
 async function salvarTexto() {
@@ -88,4 +89,30 @@ function apagarInputs(){
     document.getElementById("motivo").value = "opt";
     document.getElementById("Coleta").value = "";
     document.getElementById("setor").value = "opt";
+}
+
+//pega os locais pela rota Get e transforma em options no HTML
+async function pegaLocais() {    
+try {
+    await fetch (`${link}/locais`, {
+        method: "GET",
+            mode: "cors",
+            headers:{
+                "Content-Type":"application/json",
+            } 
+    })
+    .then(response => response.json())
+    .then(data => {
+        const listaLocais = document.getElementById('locais');
+
+        data.forEach(data => {
+        const option = document.createElement('option')
+        option.textContent = data;
+        option.value = data
+        listaLocais.appendChild(option);
+        })
+    })
+} catch (err) {
+    console.error(err);
+}
 }

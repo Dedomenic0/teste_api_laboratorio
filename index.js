@@ -1,15 +1,19 @@
 import fs from "fs"
-import express from "express"
 import cors from "cors"
 import moment from "moment"
 import separaEConta from "./separador.js"
 import XLSX from "xlsx"
+import mandaLocais from "./mandaLocais.js"
+import adicionaLocal from './salvaLocais/adicionaLocal.js'
 
 //crias as rotas utilizadas
 const routes = (app) =>{
     app.use(express.json());
     app.post(`/salva`, salvaTxt);
     app.post("/envia", separaEConta);
+    app.get('/locais', mandaLocais);
+    app.post('/novoLocal', adicionaLocal)
+
 }
 
 //executa o express
@@ -60,7 +64,7 @@ app.listen(3000, () => {
             await fs.promises.writeFile(rotaDeSalvamento, tratada);
             
             //Lê o arquivo txt e o copia em formato XLSX
-            const wb = XLSX.readFile(rotaDeSalvamento);
+            const wb = XLSX.readFile(rotaDeSalvamento,{ raw: true });
             XLSX.writeFile(wb, rotaXlsx);
 
         } catch(err){
