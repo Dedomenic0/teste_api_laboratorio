@@ -19,9 +19,9 @@ async function novoLocal() {
      .then(data => {
          console.log("ok", data)
          })
-     
- } catch(err) {
-     console.error(err);
-     alert("Falha ao conectar com o servidor!");
- } 
+        } catch(err) {
+            console.error(err);
+            alert("Falha ao conectar com o servidor!");
+        } 
+        local = document.getElementById("novoLocal").value = '';
  }

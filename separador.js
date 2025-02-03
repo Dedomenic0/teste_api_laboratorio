@@ -42,12 +42,12 @@ function contador(palavra1, palavra2, mes) {
 
     if (mes == "12" && data.getMonth()+1 == 1) {ano = data.getFullYear() - 1}
 
-    caminho = `./contadorHemosta_mes_${mes}-${ano}.txt`;
-    caminho2 = `./contador_mes_${mes}-${ano}.txt`;
-    result = `./resultadoHemosta_mes_${mes}-${ano}.txt`;
-    result2 = `./resultado_mes_${mes}-${ano}.txt`;
-    caminhoExel = `./resultadosHemosta_mes_${mes}-${ano}.xlsx`;
-    caminhoExel2 = `./resultados_mes_${mes}-${ano}.xlsx`;
+    caminho = `./arquivos/contadorHemosta_mes_${mes}-${ano}.txt`;
+    caminho2 = `./arquivos/contador_mes_${mes}-${ano}.txt`;
+    result = `./arquivos/resultadoHemosta_mes_${mes}-${ano}.txt`;
+    result2 = `./arquivos/resultado_mes_${mes}-${ano}.txt`;
+    caminhoExel = `./arquivos/resultadosHemosta_mes_${mes}-${ano}.xlsx`;
+    caminhoExel2 = `./arquivos/resultados_mes_${mes}-${ano}.xlsx`;
     
 
  fs.readFile(caminho, 'utf8', (err, dados) => {
