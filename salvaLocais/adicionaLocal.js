@@ -8,5 +8,5 @@ export default async function adicionaLocal (req, res) {
     } catch (err) {
         console.error(err);
     }
-    res.status(200).json({ 'response': 'Novo local salvo' })
+    res.status(200).json({ 'Response': 'Novo local salvo, favor atualizar a pagia principal' })
 }

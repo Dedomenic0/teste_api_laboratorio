@@ -1,118 +1,56 @@
-const link = "http://localhost:3000";
-pegaLocais()
+import fs from "fs"
+import moment from "moment"
+import XLSX from "xlsx"
 
-//envia os inputs recebidos para o link pelo metodo post
-async function salvarTexto() {
-    const texto = document.getElementById("texto").value;
-    const coleta = document.getElementById("Coleta").value;
-    const motivo = document.getElementById("motivo").value;
-    const verificacao = document.getElementById("locais").textContent;
-    const rota = document.getElementById("setor").value;
-    
-    
-    //verifica se os campos foram preenchidos corretamente
-    if (texto == "" || coleta == "" || motivo == "opt" || rota == "opt") {
-        alert("Preencha todos os campos");
-        return;
+//salva o arquivo em txt
+ export default async function salvaTxt(req, res) {
+    const mes = new Date;
+    const data = moment().format('DD/MM/YYYY');
+    const txt = req.body.texto;
+    const coleta = req.body.coleta;
+    const motivo = req.body.motivo;
+    const rota = req.body.rota;
+    var rotaTxt = "";
+    var rotaXlsx = "";
+    var rotaDeSalvamento = "";
+
+    //verifica se a opçao correspondente está marcada para assim mudar a rota para salva os arquivos
+    if (rota == "hemostasia") {
+        rotaTxt = `./arquivos/contadorHemosta_mes_${mes.getMonth()+1}-${mes.getFullYear()}.txt`;
+        rotaXlsx = `./arquivos/amostrasHemosta_mes_${mes.getMonth()+1}-${mes.getFullYear()}.xlsx`;
+        rotaDeSalvamento = "./arquivos/para-xlsxhemosta.txt";
+    } else {
+        rotaTxt = `./arquivos/contador_mes_${mes.getMonth()+1}-${mes.getFullYear()}.txt`;
+        rotaXlsx = `./arquivos/amostras_mes_${mes.getMonth()+1}-${mes.getFullYear()}.xlsx`;
+        rotaDeSalvamento = "./arquivos/para-xlsx.txt";
     }
-    
-    //verifica se o campo local da coleta foi preencido com um local existente
-    if (!verificacao.includes(coleta)) {
-        alert("Local de coleta não encontrado");
-        return;
-    }
-    
-    try {
-        await fetch(`${link}/salva`, {
-            method: "POST",
-            mode: "cors",
-            headers:{
-                "Content-Type":"application/json",
-            }, 
-            body: JSON.stringify({
-                texto : texto,
-                coleta : coleta,
-                motivo : motivo,
-                rota : rota
-            })
+
+    try{
+        await fs.promises.appendFile(rotaTxt, `Cod. da amostra: ${txt.replace("\n", "")}, Motivo: ${motivo}, Procedencia: ${coleta}, Data: ${data}` + "\n");
+        fs.readFile(rotaTxt, "utf8", async(err, data) => {
+            if(err) {
+                console.log(err);
+                return;
+            }
+
+            //recorta as partes do arquivo txt
+            let tratada1 = data.replace(/Cod. da amostra: /g, "");
+            let tratada2 = tratada1.replace(/Motivo: /g, "");
+            let tratada3 = tratada2.replace(/Procedencia: /g, "");
+            let tratada = tratada3.replace(/Data: /g, "");
+           
+            //lê o arquivo tratado
+            await fs.promises.writeFile(rotaDeSalvamento, tratada);
+            
+            //Lê o arquivo txt e o copia em formato XLSX
+            const wb = XLSX.readFile(rotaDeSalvamento,{ raw: true });
+            XLSX.writeFile(wb, rotaXlsx);
+
         })
-        .then(response => response.json())
-        .then(data => {
-            console.log("ok", data),
-            apagarInputs()
-        });
         
-    }catch (err){
-    console.error(err);
-    alert("Falha ao conectar com o servidor!");
+        //console.log("Deu certo");
+        res.status(200).json({"Response":"Salvo"});
+    } catch (err) {
+        console.log(err);
     }
-}
-
-
-async function enviarFormulario() {
-    const data = document.getElementById("data").value;
-    const month = new Date;
-
-    //verifica o mês informado, se foi informada uma data e se ela é maior que o mês atual
-    if (data == "00" || data > month.getMonth() + 1 && data != "12") {
-        alert ("Selecione um mês valido!");
-        return;
-    };
-    
-    try {
-       await fetch(`${link}/envia`,{
-            method: "POST",
-            mode: "cors",
-            headers:{
-                "Content-Type":"application/json",
-            }, 
-            body: JSON.stringify({
-                data : data
-            })
-        } 
-    )
-    .then(response => response.json())
-    .then(data => {
-        console.log("ok", data),
-        apagarInputs(),
-        alert("Contagem realizada")})
-    
-} catch(err) {
-    console.error(err);
-    alert("Falha ao conectar com o servidor!");
-} 
-}
-
-//retorna os inputs ao estado padrao após envio
-function apagarInputs(){
-    document.getElementById("texto").value = "";
-    document.getElementById("motivo").value = "opt";
-    document.getElementById("Coleta").value = "";
-    document.getElementById("setor").value = "opt";
-}
-
-//pega os locais pela rota Get e transforma em options no HTML
-async function pegaLocais() {    
-try {
-    await fetch (`${link}/locais`, {
-        method: "GET",
-            mode: "cors",
-            headers:{
-                "Content-Type":"application/json",
-            } 
-    })
-    .then(response => response.json())
-    .then(data => {
-        const listaLocais = document.getElementById('locais');
-
-        data.forEach(data => {
-        const option = document.createElement('option')
-        option.textContent = data;
-        option.value = data
-        listaLocais.appendChild(option);
-        })
-    })
-} catch (err) {
-    console.error(err);
-}
 }
