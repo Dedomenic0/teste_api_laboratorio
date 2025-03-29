@@ -4,35 +4,37 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Laboratorio</title>
+        <link rel="stylesheet" href="reset.css">
         <link rel="stylesheet" href="style.css">
         <link rel="icon" type="image/png" href="./imag/icon.png">
     </head>
-    <body>
-        <section class="form-container">
-            <div class="container">
-                <h1>Amostras rejeitadas</h1>
-                <form>
+        <body>
+            <section class="envio__de__amostra">
+                <form class="formulario">
+                    <h1>AMOSTRAS REJEITADAS</h1>
      <select name="setor" id="setor">
         <option value="opt">-selecione um setor-</option>
         <option value="hematologia">HEMATOLOGIA</option>
         <option value="hemostasia">HEMOSTASIA</option>
      </select>
-    <br><input name="teste" id="texto" placeholder="Cod. da amostra" autocomplete="off"></textarea><br>
-    <input list="locais" id="Coleta" placeholder="Local da Coleta" ><br>
+    <input type="text" name="teste" id="texto" placeholder="Cod. da amostra" autocomplete="off">
+    <input type="text" list="locais" id="Coleta" placeholder="Local da coleta" >
     <datalist id="locais">
     </datalist>
     <select name="motivo" id="motivo">
-        <option value="opt">-selecione motivo-</option>
+        <option value="opt">-selecione o motivo-</option>
         <option value="Amostra coagulada"> Amostra coagulada </option>
         <option value="volume inadequado"> Volume inadequado </option>
         <option value="Coleta em tubo errado"> Coleta em tubo tubo errado </option>
         <option value="Outros"> Outros </option>
-    </select><br>
-    <button type="button" onclick="salvarTexto()">Salvar</button>
-    </form>    
+    </select>
+    <button class="salvar__formulario" type="button" onclick="salvarTexto()">Salvar</button>
+</form>
+    </section>   
+    <section class="contagem__final">
     <div class="contador">
         <h2>Contagem</h2>
-        <label for="data">Mês para a contagem</label><br>
+        <label for="data">Mês para a contagem</label>
         <select name="data" id="data">
             <option value="00">-----</option>
             <option value="1">JANEIRO</option>
@@ -47,17 +49,17 @@
             <option value="10">OUTUBRO</option>
             <option value="11">NOVEMBRO</option>
             <option value="12">DEZEMBRO</option>
-        </select><br>
+        </select>
         <input type="button" value="Realizar contagem" id="enviar" onclick="enviarFormulario()">
     </div>
-</div>
-</section>
-<div class="novoLocal">
+
+<div class="novo__local">
     <a href="http://localhost:3030/novoLocal" target="_blank"> Novo Local </a>
 </div>
-        <div class="autor">
-    <h3>FROM: EDUARDO DEDOMENICO</h3>
-    </div>
+</section>
+<div class="autor">
+<h3>FROM: EDUARDO DEDOMENICO</h3>
+</div>
     <script src="index.js"></script>
 </body>
 </html>
