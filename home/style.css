@@ -20,7 +20,7 @@ h1{
     align-items: center;
     flex-direction: column;
     gap: 10px;
-    background-color: rgba(253, 253, 253, 0.1);
+    background-color: #fdfdfd1a;
 }
 
 .formulario {
@@ -29,10 +29,10 @@ h1{
     align-items: center;
     flex-direction: column;
     gap: 10px;
-    background-color: rgba(212, 255, 255, 0.5);
+    background-color: #57b3ba46;
     padding: 20px;
     border-radius: 20px;
-    
+    color: #000000;
 }
 
 .contagem__final {
@@ -49,7 +49,7 @@ h1{
     flex-direction: column;
     gap: 10px;
     max-width: 300px;
-    background-color: rgb(216, 247, 255, 0.5);
+    background-color: #fdfbee67;
     padding: 10px;
     border-radius: 20px;
 }
@@ -69,11 +69,15 @@ a{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: 700;
 }
-
+.novo__local:hover{
+    background-color: #faee9d;
+}
+ 
 .autor {
     color: rgb(152, 152, 153);
     font-family: 'Courier New', Courier, monospace;
     margin-left: 20px;
+    align-content: end;
 }
 
 #texto, #Coleta, #motivo{
@@ -81,18 +85,28 @@ a{
     margin: auto;
     border: 2px solid rgb(2, 2, 2);
     border-radius: 8px;
-    background-color: rgb(255, 192, 192, 0.5);
+    background-color: #fa62442f;
     width: 250px;
     font-size: 18px;
     text-align: center;
     resize: none;
-    height: 40px;
+    height: 40px;;
+    color: #00000085;
+}
+
+#texto::placeholder, #Coleta::placeholder, #motivo::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+
+}
+
+#texto:hover, #Coleta:hover, #motivo:hover, #setor:hover {
+    border: 2px solid #03c9bf;
 }
 
 .salvar__formulario {
     margin: auto;
-    background-color: rgb(0, 255, 64);
-    border: 2px solid rgb(0, 255, 64);
+    background-color: #73EC8B;
+    border: 2px solid #73EC8B;
     width: 250px;
     font-size: 20px;
     text-align: center;
@@ -101,9 +115,13 @@ a{
     border-radius: 8px;
 }
 
+.salvar__formulario:hover {
+    border: #312e2d solid 2px;
+}
+
 #setor {
     margin: auto;
-    background-color: rgb(64, 170, 156);
+    background-color: #57B4BA;
     width: 250px;
     font-size: 20px;
     text-align: center;
@@ -111,11 +129,12 @@ a{
     height: 40px;
     border-radius: 8px;
     border: 2px solid rgb(2, 2, 2);
+    color: #00000085;
 }
 
 #data, #enviar {
     margin: auto;
-    background-color: rgb(64, 170, 156);
+    background-color: #57B4BA;
     width: 150px;
     font-size: 15px;
     text-align: center;
@@ -126,6 +145,17 @@ a{
 }
 
 #enviar {
-    background-color: rgb(0, 255, 64);
-    border: rgb(0, 255, 64);
+    background-color: #73EC8B;
+    border: #73EC8B;
+}
+
+#enviar:hover {
+    border: #312e2d solid 2px;
+}
+#data:hover {
+    border: #312e2d solid 2px;
+}
+
+#setor:focus, #motivo:focus {
+    color: #000000;
 }
