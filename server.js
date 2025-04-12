@@ -5,7 +5,11 @@ import mandaLocais from "./mandaLocais.js"
 import adicionaLocal from './salvaLocais/adicionaLocal.js'
 import salvaTxt from './app.js'
 
-import { configDotenv } from "dotenv"
+// import dotenv from "dotenv"
+// dotenv.config()
+
+const rota1 = process.env.ROUTE1;
+const rota2 = process.env.ROUTE2;
 
 //crias as rotas utilizadas
 const routes = (app) =>{
@@ -23,14 +27,14 @@ app.use(cors());
 routes(app);
 
 //"abre" a porta local 
-app.listen(3000, () => {
+app.listen(rota1, () => {
     console.log("Servidor escutando...");
 });
 
 //"abre" a porta para a pagina html
 const app2 = express();
 app2.use(express.static("home"));
-app2.listen(3030, () => {
+app2.listen(rota2, () => {
     console.log("servidor html escutando...")
 })
 

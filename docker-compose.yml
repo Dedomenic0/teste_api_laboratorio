@@ -1,0 +1,7 @@
+services:
+  app:
+    image: dedomenico/app-node:1.2
+    container_name: app
+    ports:
+      - 3030:3030
+      - 3000:3000
